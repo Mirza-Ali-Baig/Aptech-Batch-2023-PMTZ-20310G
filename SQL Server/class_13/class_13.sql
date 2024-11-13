@@ -85,22 +85,26 @@ SELECT A.id,A.balance,A.type,C.name from Accounts A join Customers C on A.custom
 
 
 -- !!!!!!!!!!!!!!!!!!!!!! Create a Function to get Account Info !!!!!!!!!!!!!!!!!!!!!!
+GO
 Create Function GetAccountDetails( @accountID VARCHAR(40))
 RETURNS table
 as
 RETURN (SELECT A.id,A.balance,A.type,C.name from Accounts A join Customers C on A.customer_id=C.id WHERE A.id=@accountID)
+GO
 
 
 SELECT * from dbo.GetAccountDetails('23C58580-1517-4A61-9DC6-A704A70303E0')
 
 
 -- !!!!!!!!!!!!!!!!!!!!!! Create a Function to get Account Balance !!!!!!!!!!!!!!!!!!!!!!
+GO
 Create Function GetBalance(@accountID VARCHAR(40))
 RETURNS DECIMAL(10,2)
 as
 BEGIN
     RETURN  (SELECT balance from Accounts WHERE id=@accountID)
 END
+GO
 
 
 SELECT dbo.GetBalance('23C58580-1517-4A61-9DC6-A704A70303E0')
@@ -109,6 +113,7 @@ SELECT dbo.GetBalance('23C58580-1517-4A61-9DC6-A704A70303E0')
 
 
 -- !!!!!!!!!!!!!!!!!!!!!! Create a Procedure to Deposit Ammount !!!!!!!!!!!!!!!!!!!!!!
+GO
 
 ALTER Procedure Deposit(@accountID VARCHAR(40),@amount DECIMAL(10,2))
 as
@@ -153,3 +158,102 @@ EXEC Deposit '0D7FBEA3-F5AE-44BD-A2FB-44D7DAFAE852',5000;
 
 
 --  Task : Create a Procedure to Withdrow Ammount !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+GO
+ALTER PROCEDURE Withdrow(@accountId varchar(40),@amount INT)
+AS
+BEGIN
+    BEGIN TRY
+    BEGIN TRANSACTION
+        IF @amount <=0
+        BEGIN
+            print 'Withdrow Amount Must be Grater then Zero !!'
+            return;
+        END
+            DECLARE @balance DECIMAL(10,2);
+            SELECT @balance =dbo.GetBalance(@accountID);
+
+            IF @balance  < @amount
+            BEGIN
+                print 'Insufficient Balance!!'
+                RETURN;
+            END
+
+            update Accounts set balance =@balance - @amount WHERE id = @accountID;
+
+            INSERT into Transactions(account_id,type,amount) VALUES (@accountID,'Withdrow',@amount);
+
+            commit transaction;
+
+            print 'Withdrow Successful';
+    END try
+    BEGIN CATCH
+    
+    if @@TRANCOUNT > 0 
+    begin
+        print 'Somthing Went Wrong to Withdrow Ammount';
+        rollback transaction;
+    END
+    END CATCH
+END
+
+go
+
+SELECT * FROM Accounts;
+-- 35774216-BC72-40B5-9F29-0DEE88294522
+
+EXEC Withdrow "35774216-BC72-40B5-9F29-0DEE88294522",5000;
+
+
+GO
+CREATE PROCEDURE Transfer(@senderAccountID VARCHAR(40),@reciverAccountID varchar(40),@amount INT)
+AS
+BEGIN
+    BEGIN TRANSACTION
+        BEGIN TRY
+            IF @amount <=0
+            BEGIN
+                print 'Transfer Amount Must be Grater then Zero !!'
+                return;
+            END
+            DECLARE @senderBlanace DECIMAL(10,2),@reciverBlanace DECIMAL(10,2);
+
+            SELECT @senderBlanace= DBO.GetBalance(@senderAccountID);
+
+            IF @senderBlanace < @amount
+            BEGIN
+                print 'Insufficient Balance!!'
+                RETURN;
+            END
+            UPDATE Accounts SET balance=@senderBlanace - @amount WHERE id=@senderAccountID;
+
+            SELECT @reciverBlanace= dbo.GetBalance(@reciverAccountID);
+
+            UPDATE Accounts SET balance=@reciverBlanace + @amount WHERE id=@reciverAccountID;
+
+            INSERT INTO Transactions(account_id,type,amount) VALUES (@senderAccountID,'Transfer',@amount);
+            INSERT INTO Transactions(account_id,type,amount) VALUES (@reciverAccountID,'Recived',@amount);
+
+            COMMIT TRANSACTION;
+            print 'Transfer Successful';
+        END TRY
+        BEGIN CATCH
+        IF @@TRANCOUNT > 0 
+            BEGIN
+                print 'Somthing Went Wrong to Transfer Ammount';
+                rollback transaction;
+            END
+        END CATCH 
+END
+
+GO
+
+-- Sender id =0D7FBEA3-F5AE-44BD-A2FB-44D7DAFAE852
+-- Reciver id =8577D86E-5E5D-4753-B120-8181FF87A5F3
+
+EXECUTE Transfer '0D7FBEA3-F5AE-44BD-A2FB-44D7DAFAE852','8577D86E-5E5D-4753-B120-8181FF87A5F3', 1000;
+
+SELECT * from Transactions ORDER BY timestamp DESC;
+
+SELECT C.name,C.email,A.type,T.amount,T.type from Transactions T JOIN Accounts A on T.account_id = a.id JOIN Customers C on A.customer_id=C.id WHERE a.id='0D7FBEA3-F5AE-44BD-A2FB-44D7DAFAE852'; 
