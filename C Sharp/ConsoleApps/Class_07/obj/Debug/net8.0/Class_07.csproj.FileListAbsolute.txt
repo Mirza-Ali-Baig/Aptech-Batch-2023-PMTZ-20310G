@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\bin\Debug\net8.0\Class_07.exe
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\bin\Debug\net8.0\Class_07.deps.json
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\bin\Debug\net8.0\Class_07.runtimeconfig.json
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\bin\Debug\net8.0\Class_07.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\bin\Debug\net8.0\Class_07.pdb
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.AssemblyInfo.cs
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\refint\Class_07.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.pdb
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\Class_07.genruntimeconfig.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_07\obj\Debug\net8.0\ref\Class_07.dll
