@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\bin\Debug\net8.0\Class_11.exe
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\bin\Debug\net8.0\Class_11.deps.json
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\bin\Debug\net8.0\Class_11.runtimeconfig.json
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\bin\Debug\net8.0\Class_11.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\bin\Debug\net8.0\Class_11.pdb
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.AssemblyInfo.cs
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\refint\Class_11.dll
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.pdb
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\Class_11.genruntimeconfig.cache
+C:\Users\Admin\source\repos\ConsoleApps\Class_11\obj\Debug\net8.0\ref\Class_11.dll
